@@ -29,12 +29,30 @@ label.logo {
 }
 
 #logoID {
+    display: inline-block;
     color: white;
     font-size: 35px;
     line-height: 80px; /* LA MISMA QUE HEIGHT DEL NAV */ /* AJUSTABLE */
-    padding: 7px 13px;
+    padding: 0px 13px;
     font-weight: bold;
     border-radius: 4px;
+    height: 80px;
+}
+
+#logoImg {
+    display: inline-block;
+    height: 80px;
+    padding: 6px 0px;
+}
+
+#logoImgRight {
+    display: inline-block;
+    height: 80px;
+}
+
+#logoImgLeft {
+    display: inline-block;
+    height: 80px
 }
 
 nav ul#menuList {
@@ -101,9 +119,33 @@ a.active, a:hover {
     transform: rotate(-45deg) translate(-5px, -0px); /* Adjust the translation for better alignment */
 }
 
-@media (max-width: 1117.6px) {
+@media (max-width: 1217px) {
+
+    nav {
+        background-color: #0082e6;
+        height: 80px; /* LA MISMA QUE EL #logoID {LINE-HEIGHT... Y label.logo{HEIGHT... Y li.list{ LINE-HEIGHT:... */ /* AJUSTABLE */
+        width: 100%;
+        text-align: center;
+    }
+
+
+    #logoID {
+        display: inline-block;
+        color: white;
+        font-size: 35px;
+        line-height: 80px; /* LA MISMA QUE HEIGHT DEL NAV */ /* AJUSTABLE */
+        padding: 0px 13px;
+        font-weight: bold;
+        border-radius: 4px;
+        height: 80px;
+    }
+
+    /* CAMBIO EN EL BURGER MENU */
+
+
     .bars__menu {
         display: inline-block;
+        left: 90%;
     }
 
     nav ul#menuList {
@@ -143,6 +185,18 @@ a.active, a:hover {
         color: #0082e6;
     }
 
+}
+
+@media (max-width: 1376px) {
+    label.logo {
+        padding: 0 50px;
+    } 
+}
+
+@media (max-width: 1277px) {
+    label.logo {
+        padding: 0 20px;
+    } 
 }
 
 
