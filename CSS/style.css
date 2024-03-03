@@ -242,6 +242,7 @@ a.active, li.list a:hover {
     height: 30px;
     margin: 20px 35vw;
     border-bottom: 2px solid black;
+    border-radius: 4px;
 }
 
 #buscador::placeholder {
@@ -265,6 +266,8 @@ a.active, li.list a:hover {
     margin: 5px 10px;
     border: 2px solid black;
 
+    /* text-align: center; */
+
     transition: .5s all ease-out;
 }
 
@@ -277,6 +280,10 @@ a.active, li.list a:hover {
 .wire-elements p {
     font-size: 16px;
     margin: 2px 2px;
+}
+
+.wire-elements b {
+    display: none;
 }
 
 .wire-elements:hover {
