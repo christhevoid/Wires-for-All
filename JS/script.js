@@ -34,3 +34,15 @@ barsMenu.addEventListener("click", animateBars);
     Operador ternario, que dicta que var next color = (si current es igual a original) ? entonces cambiar el valor al color blanco, de lo contrario : cambiar al original 
 
 */
+
+document.addEventListener(`keyup`, e => {
+
+    if (e.target.matches(`#buscador`)) {
+        document.querySelectorAll(`.wire-elements`).forEach(element => {
+
+            element.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+            ? element.classList.remove(`filtro`)
+            : element.classList.add(`filtro`)
+        })
+    }
+})

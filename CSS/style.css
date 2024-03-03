@@ -16,6 +16,9 @@ a {
 }
 
 nav {
+    position: fixed;
+    top: 0;
+    z-index: 99;
     background-color: #0082e6;
     height: 80px; /* LA MISMA QUE EL #logoID {LINE-HEIGHT... Y label.logo{HEIGHT... Y li.list{ LINE-HEIGHT:... */ /* AJUSTABLE */
     width: 100%;
@@ -75,7 +78,7 @@ li.list a {
     border-radius: 3px;
 }
 
-a.active, a:hover {
+a.active, li.list a:hover {
     background-color: #1b9bff;
     transition: .5s;
 }
@@ -200,4 +203,213 @@ a.active, a:hover {
 }
 
 
-/* --------------------------------------------------           ---------------------------------------------- */
+/* -------------------------------------------------- INDEX ---------------------------------------------- */
+
+#article1 {
+    margin-top: 100px;
+}
+
+#article1 section {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 0 5vw;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#article1 h2 {
+    font-size: 15px;
+}
+
+#article1 b {
+    font-size: 15px;
+}
+
+#article1 p {
+    font-size: 15px;
+}
+
+/* ---------------------------------------- BUSCADOR --------------------------------------------------------- */
+
+#inputDIV {
+    text-align: center ;
+}
+
+#buscador {
+    font-size: 20px;
+    display: block;
+    width: 30vw;
+    height: 30px;
+    margin: 20px 35vw;
+    border-bottom: 2px solid black;
+}
+
+#buscador::placeholder {
+    font-size: 20px;
+}
+
+
+#listaBuscada {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.wire-elements {
+    width: 200px;
+    height: 190px;
+
+    border-radius: 10px;
+    margin: 5px 10px;
+    border: 2px solid black;
+
+    transition: .5s all ease-out;
+}
+
+.wire-elements img {
+    width: 187px;
+    height: 122.55px;
+    margin: 20px 5px 0 5px; 
+}
+
+.wire-elements p {
+    font-size: 16px;
+    margin: 2px 2px;
+}
+
+.wire-elements:hover {
+    transform: scale(1.05);
+}
+
+.filtro {
+    display: none;
+}
+
+/* -------------------------------------------------- COAXIAL --------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------ PAR TRENZADO --------------------------------------------------*/
+
+#article1_parTrenzado {
+    margin-top: 100px;
+}
+
+#article1_parTrenzado section#article1_parTrenzado {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 0 5vw;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#article1_parTrenzado h2 {
+    font-size: 15px;
+}
+
+#article1_parTrenzado b {
+    font-size: 15px;
+}
+
+#article1_parTrenzado p {
+    font-size: 15px;
+}
+
+
+#section2_parTrenzado {
+    margin-top: 30px;
+}
+
+h2#Inicio-cables-par-trenzado {
+    font-size: 20px;
+    padding: 0 0 0 30px;
+    border-bottom: 2px solid #0082e6;
+    color: #0082e6;
+}
+
+.elemento {
+    display: flex;
+}
+
+.elemento-contenedor-imagen {
+    margin: 5px 5px;
+    width: 330px;
+    height: 312.91px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen img {
+    display: inline-block;
+    text-align: center;
+    width: 310px;
+    border-radius: 10px;
+}
+
+.elemento-contenido h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------- FIBRA ÓPTICA --------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------- SOBRE NOSOTROS --------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------- FOOTER (igual en todas las páginas) ------------------------------------------ */
