@@ -353,17 +353,17 @@ h2#Inicio-cables-par-trenzado {
 }
 
 .elemento-contenedor-imagen {
-    margin: 5px 5px;
-    width: 330px;
-    height: 312.91px;
-    border: 2px solid black;
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
     border-radius: 10px;
 }
 
 .elemento-contenedor-imagen img {
     display: inline-block;
     text-align: center;
-    width: 310px;
+    width: 180px;
     border-radius: 10px;
 }
 
