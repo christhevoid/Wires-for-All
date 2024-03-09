@@ -296,6 +296,255 @@ a.active, li.list a:hover {
 
 /* -------------------------------------------------- COAXIAL --------------------------------------------------- */
 
+#article1_Coaxial {
+    margin-top: 100px;
+}
+
+#article1_Coaxial section#article1_Coaxial {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 0 5vw;
+    padding: 7px;
+    border-radius: 10px;
+}
+
+#article1_Coaxial h2 {
+    font-size: 15px;
+}
+
+#article1_Coaxial b {
+    font-size: 15px;
+}
+
+#article1_Coaxial p {
+    font-size: 15px;
+}
+
+#section2_Coaxial {
+    margin-top: 30px;
+}
+
+h2#Inicio-cables-Coaxiales {
+    font-size: 20px;
+    padding: 0 0 0 30px;
+    border-bottom: 2px solid #0082e6;
+    color: #0082e6;
+}
+
+.elemento1 {
+    display: flex;
+}
+
+.elemento-contenedor-imagen-Coaxial1 {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen-Coaxial1 img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.PRECIO-COAXIAL-1 p {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+    margin-top: 175px;
+}
+
+.elemento2 {
+    display: flex;
+}
+
+.elemento-contenedor-imagen-Coaxial2 {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen-Coaxial2 img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.PRECIO-COAXIAL-2 p {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+    margin-top: 175px;
+}
+
+.elemento3 {
+    display: flex;
+}
+
+.elemento-contenedor-imagen-Coaxial3 {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen-Coaxial3 img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.PRECIO-COAXIAL-3 p {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+    margin-top: 175px;
+}
+
+.elemento4 {
+    display: flex;
+}
+
+.elemento-contenedor-imagen-Coaxial4 {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen-Coaxial4 img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.PRECIO-COAXIAL-4 p {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+    margin-top: 175px;
+}
+
+.elemento-contenido-Coaxial1 h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial1 p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial2 h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial2 p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial3 h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial3 p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial4 h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido-Coaxial4 p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+#section3_Conectores {
+    margin-top: 30px;
+}
+
+h2#Inicio-Conectores {
+    font-size: 20px;
+    padding: 0 0 0 30px;
+    border-bottom: 2px solid #0082e6;
+    color: #0082e6;
+}
+
+.elemento {
+    display: flex;
+}
+
+.elemento-contenedor-imagen {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.elemento-contenido h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.elemento-contenido p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
+
+.elemento-contenido-2 h2 {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+    margin-left: 210px;
+}
+
+.elemento-contenido-2 p {
+    margin: 10px 30px;
+    font-size: 24px;
+    text-align: center;
+    margin-left: 200px;
+}
+
+.PRECIO-COAXIAL p {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+    margin-top: 175px;
+}
 
 
 
@@ -316,7 +565,7 @@ a.active, li.list a:hover {
     margin-top: 100px;
 }
 
-#article1_parTrenzado section#article1_parTrenzado {
+#article1_parTrenzado section#section1_parTrenzado {
     display: inline-block;
     border: 2px solid #0082e6;
     margin: 0 5vw;
