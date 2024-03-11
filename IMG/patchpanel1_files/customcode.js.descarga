@@ -1,0 +1,411 @@
+// last updated at: 2024-02-14 14:00 PM
+// last updated by: Yaroslav Voznyi
+
+window.unifiedSDK.registerCustomCode(async ({ loader, logger }) => {
+    const [visitor, rulesEngine] = await loader.requireModules(["visitor", "rulesEngine"]);  
+    let incrementalSearchWasClicked = false;
+    let recentlySearchedWasClicked = false;
+  
+    addVisitedPageToSessionStorage();
+    addEventListenerToSearchInput();
+    addEventListenerToIncrementalSearchLinks();
+    addCheckoutButtonEventListeners();
+  
+    // ############### Custom Properties Area #############################
+    visitor.defineProperty("Subdomain", () => window.location.host.split(".")[0].split("-").pop(), { changePage: false });
+    visitor.defineProperty("Entry_Page", getEntryPage, { changePage: false, session: true });
+    visitor.defineProperty("Page", getAdobePageName, { changePage: false, session: true });
+    visitor.defineProperty("Revenue", getRevenue, { changePage: false });
+    visitor.defineProperty("Availability", getAvailability, { changePage: true });  
+    visitor.defineProperty("Visited_Pages", getVisitedPages, { changePage: false });
+    visitor.defineProperty("Design", getDesign, { changePage: true });
+    visitor.defineProperty("Search", () => "no", { changePage: true });
+    visitor.defineProperty("Incremental Search", getIncrementalSearch, { changePage: true });
+    visitor.defineProperty("Recently searched", getRecentlySearched, { changePage: true });
+    visitor.defineProperty("Applied Filters", getAppliedFilters, { changePage: true, multiple: true });
+    visitor.defineProperty("Checkout", () => null, { changePage: false, session: false });
+    // ############### End Custom Properties Area #########################
+  
+    function addCheckoutButtonEventListeners() {    
+      const returningCustomerCheckout = document.querySelector("[data-testid='guestLoginCheckoutButton']");
+      if (returningCustomerCheckout) {
+        returningCustomerCheckout.addEventListener("click", function(){
+          visitor.setProperty("Checkout", () => e.target.textContent, { changePage: false });
+        });
+      }
+  
+      const checkoutAsGuest = document.querySelector("[data-testid='checkoutButton']");
+      if (checkoutAsGuest) {
+        checkoutAsGuest.addEventListener('click', function(e) {
+          visitor.setProperty("Checkout", () => e.target.textContent, { changePage: false });
+        });
+      }
+    }
+  
+    function addEventListenerToSearchInput() {
+      const searchInput = document.getElementById("searchBarTextInput");
+      if (searchInput == null) {
+        return null;
+      }    
+  
+      searchInput.addEventListener("focus", function () {
+        visitor.setProperty("Search", () => "yes", { changePage: false });      
+      });
+  
+      searchInput.addEventListener("focusout", function () {
+        visitor.setProperty("Search", () => "no", { changePage: false });
+      });
+    }
+  
+    function addEventListenerToIncrementalSearchLinks() {
+      const searchSection = document.querySelector("[class*='SearchSection__SearchSectionContainer']");
+  
+      if (!searchSection) {
+        return;
+      }
+      searchSection.addEventListener("click", function (e) {
+        if (e.target && e.target.matches("[class*='PredictiveResults__PredictiveResultsContainer'] a")) {
+          incrementalSearchWasClicked = true;
+          visitor.setProperty("Incremental Search", () => "used", { changePage: false });
+        }
+        if (e.target && e.target.matches("[class*='SearchBar__RecentlySearchedContainer'] a")) {
+          recentlySearchedWasClicked = true;
+          visitor.setProperty("Recently searched", () => "used", { changePage: false });
+        }
+      });
+    }
+  
+    function addVisitedPageToSessionStorage() {
+      const currentVisitorId = visitor.getVisitorId();
+      // delete old data if a new session was started
+      if (sessionStorage.getItem("uws_visitor_id") !== currentVisitorId) {
+        sessionStorage.setItem("uws_visited_pages", JSON.stringify([]));
+      }
+  
+      const storedPages = JSON.parse(sessionStorage.getItem("uws_visited_pages")) || [];
+  
+      if (storedPages.length > 50) {
+        storedPages.shift();
+      }
+  
+      const adobePagename = getAdobePageName();
+      if (adobePagename) {
+        storedPages.push(adobePagename);
+      }
+  
+      sessionStorage.setItem("uws_visitor_id", currentVisitorId);
+      sessionStorage.setItem("uws_visited_pages", JSON.stringify(storedPages));
+    }
+  
+    function getEntryPage() {
+      const adobePagename = getAdobePageName();
+      const currentValue = visitor.getPropertyValue("Entry_Page");
+      if (adobePagename && !currentValue) {
+        return adobePagename;
+      }
+  
+      return null;
+    }
+  
+    function getRevenue() {
+      const total = window.rs?.web?.digitalData?.grandTotalWithTax;
+      const tax = window.rs?.web?.digitalData?.tax;
+      const shipping = window.rs?.web?.digitalData?.shipping;
+  
+      if (total === undefined || tax === undefined || shipping === undefined) {
+        return null;
+      }
+  
+      return total - tax - shipping;
+    }
+  
+    function getAvailability() {
+      const url = new URL(location.href);
+      if (!url.href.match("/basket")) {
+        return null;
+      }
+      let inStockItemPresent = false;
+      let backOrderItemPresent = false;
+      let outOfStockItemPresent = false;
+  
+      const basketItems = document.querySelectorAll("[data-testid='Product__availability']");
+      basketItems.forEach((i) => {
+        
+        if (i.classList.contains("jvpoAv")) {
+          backOrderItemPresent = true;
+          return;
+        }
+        if (i.classList.contains("eDnViw")) {
+          outOfStockItemPresent = true;
+          return;
+        }
+        if (i.classList.contains("hasXXM")) {
+          inStockItemPresent = true;
+          return;
+        }
+      });
+  
+      const availabilityProperty = [];
+      if (inStockItemPresent) {
+        availabilityProperty.push("green");
+      }
+      if (backOrderItemPresent) {
+        availabilityProperty.push("amber");
+      }
+      if (outOfStockItemPresent) {
+        availabilityProperty.push("red");
+      }
+  
+      return availabilityProperty.toString();
+    }
+  
+    function getVisitedPages() {
+      const storedPages = JSON.parse(sessionStorage.getItem("uws_visited_pages")) || [];
+      return storedPages.join(", ");
+    }
+  
+    function getDesign() {
+      if (window.innerWidth < 760) {
+        return 1;
+      }
+      if (window.innerWidth >= 760 && window.innerWidth < 1024) {
+        return 2;
+      }
+      if (window.innerWidth >= 1024) {
+        return 3;
+      }
+    }
+  
+    function getIncrementalSearch() {
+      if (incrementalSearchWasClicked) {
+        return "used";
+      } else if (
+        visitor.evaluateSingleCondition({
+          type: "selector",
+          comparator: "exist",
+          selector: "[class*='PredictiveResults__PredictiveResultsContainer']"
+        })
+      ) {
+        return "yes";
+      } else {
+        return "no";
+      }
+    }
+  
+    function getRecentlySearched(){
+      if (recentlySearchedWasClicked) {
+        return "used";
+      } else if (visitor.evaluateSingleCondition({
+        type: "selector",
+        comparator: "visible",
+        selector: "[class*='SearchBar__RecentlySearched']"
+      })) {
+        return "yes";
+      } else {
+        return "no";
+      }
+    }
+  
+    function getAdobePageName() {
+      const parseQueryString = function (url) {
+        const urlParams = {};
+        url.replace(new RegExp("([^?=&]+)(=([^&]*))?", "g"), function ($0, $1, $2, $3) {
+          urlParams[$1] = decodeURIComponent($3);
+        });
+  
+        return urlParams;
+      };
+  
+      try {
+        const page_type = window.rs.web.digitalData.page_type ? window.rs.web.digitalData.page_type : "";
+        let page_name = window.rs.web.digitalData.page_name ? window.rs.web.digitalData.page_name : "";
+  
+        // Product page names
+        if ((page_type === "product") | (page_type === "new product")) {
+          if (window.rs.web.digitalData.site_type == "mobile") {
+            const new_page_name = page_name.split(":");
+            page_name = new_page_name[0].toLowerCase() + ": " + new_page_name[1];
+  
+            return page_name;
+          } else {
+            const PageID = window.rs.web.digitalData.product_page_id ? window.rs.web.digitalData.product_page_id : "";
+            return "product: " + PageID;
+          }
+        }
+  
+        // L1/L2/TN page names
+  
+        if (
+          (page_type === "tn") |
+          (page_type === "new tn") |
+          (page_type === "TN") |
+          (page_type === "l1") |
+          (page_type === "l2")
+        ) {
+          if ((page_type === "tn") | (page_type === "new tn") | (page_type === "TN")) {
+            // Removes the page number from tn/new tn page names
+            if (page_name.match(/:\d+/i)) {
+              page_name = page_name.replace(page_name.match(/:\d+/i)[0], "");
+            }
+          }
+  
+          // Split the page name into an array
+          const arr_page_name = page_name.split(":");
+          // Take the last value from the page name
+          return page_type.toUpperCase() + ":" + arr_page_name[arr_page_name.length - 1];
+        }
+  
+        // New L1 pages
+        if (page_type.match(/^new l1$/)) {
+          return "L1:" + page_name;
+        }
+  
+        // New L2 pages
+        if (page_type.match(/^new l2$/)) {
+          const arr_page_name = page_name.split(":");
+          return "L2:" + arr_page_name[arr_page_name.length - 1];
+        }
+  
+        // L1/L2 page names
+        if ((page_type === "Brand l1") | (page_type === "Brand l2")) {
+          // Split the page name into an array
+          const arr_page_name = page_name.split(":");
+  
+          // Swap the underscore for a colon on the first array item
+          arr_page_name[0] = arr_page_name[0].replace("_", ":");
+  
+          // Set the brand name to lowercase
+          arr_page_name[1] = arr_page_name[1].toLowerCase();
+  
+          // Construct the new page name value
+          return arr_page_name[0] + ":" + arr_page_name[arr_page_name.length - 1];
+        }
+  
+        // Home page name
+        if (page_type === "home page") {
+          return page_type;
+        }
+  
+        // Search results page name
+        if (page_type === "sr") {
+          return "search results page";
+        }
+  
+        // Zero search results page name
+        if (page_type === "zsr") {
+          return "zero search results page";
+        }
+  
+        // Basket page name
+        if (page_type.match(/basket|order review|order confirmation|order delivery|order payment/)) {
+          if (window.rs.web.digitalData.pageCreationDate && window.rs.web.digitalData.pageCreationDate !== "") {
+            return window.rs.web.digitalData.page_name;
+          } else {
+            return "checkout: " + page_type;
+          }
+        }
+  
+        if (window.rs.web.digitalData.error_type && window.rs.web.digitalData.error_type === "WEC") {
+          return "WEC:error";
+        }
+  
+        if (window.rs.web.digitalData.error_type && window.rs.web.digitalData.error_type === "SVC") {
+          return "SVC:error";
+        }
+  
+        if (
+          page_type.match(
+            /my account main|order history details|parcel tracking|copy invoice|Registration|parts list|update password|forgotten username|feedback|order return|order preferences|feedback|edit account/
+          )
+        ) {
+          return "my account: " + page_type;
+        }
+  
+        if (page_type === "login and registation main") {
+          return "login and registration main";
+        }
+  
+        if (page_type === "campaign") {
+          if (page_name) {
+            return page_name;
+          }
+          const urlParams = parseQueryString(document.location.href);
+          urlParams["id"];
+          if (urlParams["file"] && urlParams["id"]) {
+            return "campaign:" + urlParams["id"].toLowerCase() + "/" + urlParams["file"].toLowerCase();
+          } else {
+            return "campaign:" + urlParams["id"].toLowerCase();
+          }
+        }
+  
+        if (page_type === "our brands") {
+          let h = decodeURIComponent(document.location.pathname)
+            .replace(/ /g, "")
+            .match(/[a-z|\-|0-9]+/gi);
+          h = h[h.length - 1].match(/^[A-Z]$|0-9/i) ? ": " + h[h.length - 1].toLowerCase() : "";
+          return page_type + h;
+        }
+  
+        if (page_type.match(/compare|all products|quotes redeem|quotes initial matches|quotes step|line card/)) {
+          return page_type;
+        }
+  
+        // Error service page
+        if (document.getElementsByClassName("svcErrorDiv")[0]) {
+          let serviceErrorType = "";
+          const div1 = document.getElementsByClassName("svcErrorDiv");
+          if (div1 && div1.length > 0) {
+            serviceErrorType = "service:error";
+          }
+          return serviceErrorType || "";
+        }
+  
+        return page_name;
+      } catch (e) {
+        return "";
+      }
+    }
+  
+    function getAppliedFilters() {
+      const pagename = visitor.getCurrentPagename();
+      if (pagename != 'Search Result Page') {
+        return [];
+      }
+  
+      var appliedFiltersList = [];
+      var appliedFiltersSection = document.querySelectorAll("[data-testid='applied-filters'] div:not(:first-child) button span:first-child");
+      
+      if(!appliedFiltersSection) {
+        return [];
+      }
+  
+      appliedFiltersSection.forEach(e => appliedFiltersList.push(e.innerHTML.replace(/&amp;/g, '&')));
+      return appliedFiltersList;
+    }
+  
+    // automatically get survey locale from HTML element "lang" attribute and show modal survey
+    rulesEngine.registerStep(
+      "custom_autoLocaleModalSurvey",
+      async (options, storyInstance) => {
+        const locale = document.querySelector("html")?.getAttribute("lang") ?? null;
+  
+        if (!locale) {
+          // don"t show survey if locale cannot be found
+          logger.warn(
+            "Step 'custom_autoLocaleModalSurvey' failed: No locale could be extracted from html 'lang' attribute"
+          );
+          return false;
+        }
+  
+        const stepOptions = {
+          cancelClosedSurvey: true,
+          locale,
+          ...options
+        };
+  
+        const showModalStep = rulesEngine.steps.showModalSurvey.stepFunction(stepOptions);
+        return await showModalStep(storyInstance);
+      },
+      { failBehavior: "page" }
+    );
+  });

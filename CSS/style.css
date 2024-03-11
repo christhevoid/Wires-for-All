@@ -296,6 +296,10 @@ a.active, li.list a:hover {
 
 /* -------------------------------------------------- COAXIAL --------------------------------------------------- */
 
+.especial {
+    text-align: center;
+}
+
 #article1_Coaxial {
     margin-top: 100px;
 }
@@ -303,7 +307,7 @@ a.active, li.list a:hover {
 #article1_Coaxial section#article1_Coaxial {
     display: inline-block;
     border: 2px solid #0082e6;
-    margin: 0 5vw;
+    margin: 0 10vw;
     padding: 7px;
     border-radius: 10px;
 }
@@ -565,7 +569,7 @@ h2#Inicio-Conectores {
     margin-top: 100px;
 }
 
-#article1_parTrenzado section#section1_parTrenzado {
+#article1_parTrenzado section#article1_parTrenzado {
     display: inline-block;
     border: 2px solid #0082e6;
     margin: 0 5vw;
@@ -640,10 +644,88 @@ h2#Inicio-cables-par-trenzado {
 
 
 
+
 /* -------------------------------------------------- FIBRA ÓPTICA --------------------------------------------------*/
 
 
 
+#article1_fo {
+    margin-top: 100px;
+}
+
+#article1_fo section#article1_fo {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 0 5vw;
+    padding: 7px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+/* #article1_fo section#article1_fo:hover { 
+    transform: scale(1.1);
+    cursor: pointer;
+    }
+ */
+#article1_fo h2 {
+    font-size: 15px;
+}
+
+#article1_fo b {
+    font-size: 15px;
+}
+
+#article1_fo p {
+    font-size: 15px;
+}
+
+
+#section2_fo {
+    margin-top: 30px;
+}
+
+h2#Inicio-cables-fo {
+    font-size: 20px;
+    padding: 0 0 0 30px;
+    border-bottom: 2px solid #0082e6;
+    color: #0082e6;
+}
+
+.elemento {
+    display: flex;
+}
+
+.elemento-contenedor-imagen {
+    margin: 10px 10px;
+    width: 185px;
+    height: 185px;
+    border: 2px solid rgb(2, 46, 244);
+    border-radius: 10px;
+}
+
+.elemento-contenedor-imagen img {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    border-radius: 10px;
+}
+
+.elemento-contenido h2 {
+    text-align: left;
+    margin: 10px 0;
+    font-size: 24px;
+    margin-left: 30px;
+    transition: transform 0.3s ease;
+}
+/* .elemento-contenido h2:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    color: #0082e6;
+} */
+
+.elemento-contenido p {
+    margin: 10px 30px;
+    font-size: 24px;
+}
 
 
 
@@ -661,6 +743,10 @@ h2#Inicio-cables-par-trenzado {
 
 
 
+/* .TextoContenedor{
+     margin: 0 auto;
+ } */
+ 
 
 
 
