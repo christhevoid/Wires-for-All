@@ -529,16 +529,14 @@ h2#Inicio-Conectores {
 }
 
 .elemento-contenido-2 h2 {
-    text-align: center;
-    margin: 10px 0;
+    margin: 0;
     font-size: 24px;
-    margin-left: 210px;
+    margin-left: 20px;
 }
 
 .elemento-contenido-2 p {
-    margin: 10px 30px;
+    margin: 10px 0;
     font-size: 24px;
-    text-align: center;
     margin-left: 200px;
 }
 
@@ -653,10 +651,10 @@ h2#Inicio-cables-par-trenzado {
     margin-top: 100px;
 }
 
-#article1_fo section#article1_fo {
+#article1_fo_mod {
     display: inline-block;
     border: 2px solid #0082e6;
-    margin: 0 5vw;
+    margin: 100px 5vw 10px 5vw;
     padding: 7px;
     border-radius: 10px;
     transition: transform 0.3s ease;
@@ -747,6 +745,109 @@ h2#Inicio-cables-fo {
      margin: 0 auto;
  } */
  
+ .concept-container {
+    margin-bottom: 40px;
+}
+
+.concept-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.concept-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+#article1_fo {
+    margin-top: 5px;
+    padding-top: 20px;
+    margin-left: 0;
+}
+#article1_fo {
+    /* margin-top: 5px;
+    padding-top: 20px; */
+}
+
+#article1_fo section#article1_fo {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 82px 5vw 10px 5vw;
+    padding: 7px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* #article1_fo section#article1_fo:hover { 
+    transform: scale(1.05);
+    cursor: pointer;
+} */
+
+
+#article1_fo p {
+    font-size: 15px;
+}
+
+
+
+#article1_fo1 {
+   /*  margin-top: 5px;
+    padding-top: 100px; */
+    margin-left: 0;
+}
+
+section#article1_fo1 {
+    display: inline-block;
+    border: 2px solid #0082e6;
+    margin: 0 5vw;
+    padding: 7px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#article1_fo1 section#article1_fo1:hover { 
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+#article1_fo1 p {
+    font-size: 15px;
+}
+
+
+
+#miDiv {
+    display: none;
+}
+
+#mostrarOcultarBtn {
+    position: fixed;
+    bottom: 5px;
+    right: 20px; 
+    font-size: 11px;
+    background-color: #3498db; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); 
+}
+
+#mostrarOcultarBtn:hover {
+    background-color: #2980b9; /* Cambié el color al pasar el mouse */
+    transform: rotate(360deg);
+}
+
 
 
 

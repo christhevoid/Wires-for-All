@@ -16,7 +16,7 @@
             </a>
            
             <label for="logoID" class="logo">
-                <a href="index.html" id="logoID">
+                <a href="../index.html" id="logoID">
                     <img  id="logoImgLeft" src="../IMG/wiresLeft.png" alt="Right">
                     <img id="logoImg" src="../IMG/WiresForAll.png" alt="logo">
                     <img id="logoImgLeft" src="../IMG/wiresRight.png" alt="Left">
@@ -50,7 +50,7 @@
         <h2 id="Inicio-cables-par-trenzado">Cables de par trenzado</h2>
 
             <!-- 1 -->
-        <div class="elemento">
+        <div class="elemento" id="SWITCH-1">
             <div class="elemento-contenedor-imagen">
                 <img src="../IMG/switch1,1.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
@@ -67,7 +67,7 @@
 
             <!-- 2 -->
         </div>
-        <div class="elemento">
+        <div class="elemento" id="SWITCH-2">
             <div class="elemento-contenedor-imagen">
                 <img style="margin-top: 10vh;" src="../IMG/switch2.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
@@ -84,7 +84,7 @@
 
 
             <!-- 3 -->
-        <div class="elemento">
+        <div class="elemento" id="SWITCH-3">
             <div class="elemento-contenedor-imagen">
                 <img style="margin-top:8vh;" src="../IMG/switch3.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
@@ -102,7 +102,7 @@
 
 
             <!-- 4 -->
-        <div class="elemento">
+        <div class="elemento" id="SWITCH-4">
             <div class="elemento-contenedor-imagen">
                 <img style="margin-top: 9vh;" src="../IMG/switch4.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
@@ -119,9 +119,11 @@
 
 
             <!-- 5 -->
-        <div class="elemento">
+        
+
+        <div class="elemento" id="SWITCH-5">
             <div class="elemento-contenedor-imagen">
-                <img style="margin-top: 4.5vh;" src="../IMG/switch5.jpg" alt="cableCat3UTP_1_parTrenzado">
+                <img src="../IMG/switch5.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
             <div class="elemento-contenido">
                 <h2>6 Puertos 2.5G Switch Ethernet Umanaged</h2>
@@ -135,7 +137,7 @@
         </div>
 
         <!-- 6 -->
-        <div class="elemento">
+        <div class="elemento" id="SWITCH-6">
             <div class="elemento-contenedor-imagen">
                 <img style="margin-top: 7.5vh;" style="margin-top: 4.5vh;" src="../IMG/switch6.jpg" alt="cableCat3UTP_1_parTrenzado">
             </div>
@@ -149,6 +151,8 @@
                 </p>
             </div>
         </div>
+
+        
 
 
         <!-- 7 -->
@@ -173,6 +177,78 @@
 <!-- --------------------------------------MADA ------------------------------------------------- -->
 
 <br><br><br>
+
+ 
+<button id="mostrarOcultarBtn">Conceptos</button>
+
+<div id="miDiv">
+    <article id="article1_fo1">
+     <section id="article1_fo1">
+        <div class="concept-container">
+            
+            <div class="concept">
+                <p class="concept-title">Autonegacion</p>
+                <p class="concept-description">La autonegociación es un proceso en el que dos dispositivos de red, como switches, se comunican entre sí para determinar la configuración óptima para su conexión. En el contexto de los switches, esto implica la negociación de parámetros como la velocidad de transmisión (10/100/1000 Mbps) y el modo dúplex (half-duplex/full-duplex).</p>
+            </div>
+        </div>
+    </section>
+    </article>
+        
+    <article id="article1_fo">
+        <section id="article1_fo">
+        <div class="concept-container">
+           
+            <div class="concept">
+                <p class="concept-title">Aging</p>
+                <p class="concept-description">El envejecimiento (aging) en switches se refiere al proceso por el cual se eliminan automáticamente las direcciones MAC inactivas de la tabla de direcciones MAC del switch. Esto se hace para liberar espacio y garantizar que la tabla refleje con precisión la ubicación de las direcciones MAC activas en la red.</p>
+            </div>
+        </div>
+    </section>
+    </article>
+        
+    <article id="article1_fo">
+        <section id="article1_fo">
+        <div class="concept-container">
+        
+            <div class="concept">
+                <p class="concept-title">VIP Port</p>
+                <p class="concept-description">La función de VIP Port (Virtual Interface Port) en switches ASUS generalmente se refiere a la capacidad de asignar una interfaz virtual a un puerto físico. Esto permite configurar múltiples interfaces virtuales en un solo puerto físico, lo que puede ser útil en situaciones donde se requiere segmentación de red o configuraciones específicas.</p>
+            </div>
+        </div>
+    </section>
+    </article>
+        
+    <article id="article1_fo">
+        <section id="article1_fo">
+        <div class="concept-container">
+            
+            <div class="concept">
+                <p class="concept-title">POE</p>
+                <p class="concept-description">Es una tecnología que permite la transmisión de datos y energía eléctrica a través de un cable Ethernet. Esto elimina la necesidad de fuentes de alimentación adicionales para dispositivos como cámaras de seguridad, teléfonos IP, y puntos de acceso inalámbrico.</p>
+            </div>
+        </section>
+    </article>
+            
+    <article id="article1_fo">
+        <section id="article1_fo">
+            <div class="concept">
+                <p class="concept-title">POE+</p>
+                <p class="concept-description">Es una mejora del estándar POE original que proporciona una mayor potencia (hasta 30 vatios) en comparación con los 15 vatios de POE. Esto es beneficioso para dispositivos que requieren más energía.</p>
+            </div>
+        </section>
+    </article>
+            
+    <article id="article1_fo">
+        <section id="article1_fo">
+            <div class="concept">
+                <p class="concept-title">POE++</p>
+                <p class="concept-description">Es una extensión del estándar POE+ que ofrece una potencia aún mayor, llegando a 60 o 90 vatios, lo que es útil para dispositivos que demandan una mayor cantidad de energía, como puntos de acceso de alta potencia o cámaras PTZ (Pan-Tilt-Zoom).</p>
+            </div>
+        </div>
+    
+    </section>
+    </article>
+    </div>
 
 <!-- </div>
 <div class="elemento">

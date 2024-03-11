@@ -47,4 +47,25 @@ document.addEventListener(`keyup`, e => {
     }
 })
 
+if (window.location.pathname.endsWith('switches.html')) {
+    document.addEventListener('click', function () {
+
+        
+        // Obtenemos el div y el botón por su ID
+        var miDiv = document.getElementById('miDiv');
+        var mostrarOcultarBtn = document.getElementById('mostrarOcultarBtn');
+    
+        // Agregamos un evento al botón para manejar el clic
+        mostrarOcultarBtn.addEventListener('click', function () {
+            // Toggle para cambiar la visibilidad del último div al hacer clic en el botón
+            if (miDiv.style.display === 'none') {
+                miDiv.style.display = 'block';
+            } else {
+                miDiv.style.display = 'none';
+            }
+        });
+    });
+}
+
+
 
